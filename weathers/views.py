@@ -42,7 +42,7 @@ def index(request):
 
 
 
-    return render(request,'weathers/weathers.html',context)
+    return render(request,'weathers/index.html',context)
 
 def delete_city(request,city_name):
     City.objects.get(name=city_name).delete()
