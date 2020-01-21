@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+
+    <style type="text/css">
+     *{
+       padding:0;
+       margin:0;
+        }
+        h1{
+        background-color:green;
+        text-align:center;
+        margin:0;
+        padding:0;
+        border:line;
+        padding-bottom:4%;
+        font-size:50px;
+        }
+     .city{
+      text-align:center;
+     }
+     .temp{
+      text-align:center;
+     }
+    .des{
+    text-align:center;
+    }
+    .wi{
+    text-align:center;
+    }
+    .center{
+    display:block;
+    margin:auto;
+    margin:auto;
+    }
+    .whole{
+    border:2px solid;
+    margin:0 40% 0 40%;
+    }
+    .in{
+    font-size:30px;
+    text-align:center;
+    }
+
+
+    </style>
+</head>
+
+<section class="hero is-primary">
+<div class="hero-body">
+<div class="container">
+<h1 class="title">Weather App</h1>
+</div>
+    </div>
+</section>
+<hr>
+<div class="in">
+<form method="POST">
+    {% csrf_token %}
+    <div>{{ form.name }}</div>
+    <button type="submit" >Add city</button>
+</form>
+</div>
+<hr>
+
+{% for city_weather in weather_data %}
+<div class="whole">
+<img src='http://openweathermap.org/img/w/{{city_weather.icon}}.png' alt="image" class="center">
+<h3 class="city"><strong>City: {{city_weather.city}}</strong></h3>
+<h3 class="temp">Temperature: {{city_weather.temperature}}°c</h3>
+<h3 class="des">Description: {{city_weather.description}}</h3>
+<h3 class="wi">Wind speed: {{city_weather.wind_speed}}km/s</h3>
+    <div class="media-right"><a href="{% url 'delete_city' city_weather.city %}"><button class="delete">X</button></a></div>
+</div>
+
+<br>
+
+{% endfor %}
+
+
+<footer class="footer">
+
+</footer>
+</body>
+</html>
